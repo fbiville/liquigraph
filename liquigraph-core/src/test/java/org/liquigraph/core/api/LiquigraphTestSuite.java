@@ -25,6 +25,7 @@ import java.sql.*;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 abstract class LiquigraphTestSuite implements GraphIntegrationTestSuite {
@@ -149,5 +150,18 @@ abstract class LiquigraphTestSuite implements GraphIntegrationTestSuite {
         })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("Changeset with ID <second-changelog> and author <team> has conflicted checksums");
+    }
+
+    @Test
+    public void allows_cypher_extensions_in_queries() {
+        assertThatCode(() -> {
+            liquigraph.runMigrations(
+                        new ConfigurationBuilder()
+                                .withRunMode()
+                                .withMasterChangelogLocation("changelog/changelog-with-extensions.xml")
+                                .withUri(graphDatabase().uri())
+                                .build()
+            );
+        }).doesNotThrowAnyException();
     }
 }
