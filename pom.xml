@@ -36,6 +36,7 @@
 
     <modules>
         <module>liquigraph-core</module>
+        <module>liquigraph-core-ogm</module>
         <module>liquigraph-maven-plugin</module>
         <module>liquigraph-cli</module>
         <module>liquigraph-spring-boot-starter</module>

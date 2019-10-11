@@ -1,0 +1,31 @@
+# Proposal
+
+<createEntity class="com.acme.Person">
+    <property name="name">Jane Doe</property>
+    <property name="gender">FEMALE</property>
+</createEntity>
+
+<updateEntity class="com.acme.Person">
+    <where>
+        <and>
+            <property name="name">Jane Doe</property>
+            <property name="gender">FEMALE</property>
+        </and>
+    </where>
+    <property name="name">John Doe</property>
+    <property name="birthPlace">MALE</property>
+</updateEntity>
+
+<deleteEntity class="com.acme.Person">
+    <where>
+        <or>
+            <property name="name">Jane Doe</property>
+            <property name="name">John Doe</property>
+        </or>
+    </where>
+</deleteEntity>
+
+# Open questions
+
+ - Batch import?
+ - Beyond equality? (<, >, <=, >=, IN, NOT IN, !=, exists, not exists)
